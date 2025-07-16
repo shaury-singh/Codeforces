@@ -7,20 +7,16 @@ using namespace std;
 vector<int> transform(vector<int>& nums){
     vector<int> result(nums.size(),0);
     int minPrefix = nums[0];
-    int maxSuffix = nums[0];
-    for (int i=0; i<nums.size(); i++){
+    int maxSuffix = nums[nums.size()-1];
+    for (int i=0; i<nums.size()-1; i++){
         minPrefix = min(minPrefix,nums[i]);
-        maxSuffix = max(maxSuffix,nums[i]);
-        if (nums[i] == minPrefix || nums[i] == maxSuffix){
+        if (minPrefix == nums[i]){
             result[i] = 1;
         }
     }
-    minPrefix = nums[nums.size()-1];
-    maxSuffix = nums[nums.size()-1];
     for (int i=nums.size()-1; i>-1; i--){
-        minPrefix = min(minPrefix,nums[i]);
         maxSuffix = max(maxSuffix,nums[i]);
-        if (nums[i] == minPrefix || nums[i] == maxSuffix){
+        if (maxSuffix == nums[i]){
             result[i] = 1;
         }
     }
